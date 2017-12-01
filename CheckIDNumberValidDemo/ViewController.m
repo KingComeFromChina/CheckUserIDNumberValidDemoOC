@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *str = @"411002201612220153";
+    NSString *str = @"";
     
     if ([self validateIDCardNumber:str]) {
         NSLog(@"是");
