@@ -1,79 +1,115 @@
-# CheckUserIDNumberValidDemoSwift
-根据正则和算法判断身份证号合法性和正确性
-#[简介](http://www.jianshu.com/p/33ed0d7cb413)
-最近项目中用到了判断身份证合法性，本来想着网上正则一大堆，就随便复制粘贴了一个，谁曾想遇到一个身份证号带X的测试，测试说把X换成数字，一定不是正确的身份证号，你这样写不对，很早以前就听说身份证号正则只能判断格式是否正确，而对于身份证号正确性需要用算法计算出来。
-###开始普及了啊
-#[OCDemo](https://github.com/KingComeFromChina/CheckUserIDNumberValidDemoOC)
-#[SwiftDemo](https://github.com/KingComeFromChina/CheckUserIDNumberValidDemoSwift)
-看看下面的身份证常识，再看代码的话，你的逻辑一下就明了了。
-####身份证常识
-我国的身份证号分为15位和18位两种。身份证是国民的身份编号，编号是有一定规律的。
-居民身份证号码，根据〖中华人民共和国国家标准 GB 11643-1999〗中有关公民身份号码的规定，公民身份号码是特征组合码，由十七位数字本体码和一位数字校验码组成。排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。 居民身份证是国家法定的证明公民个人身份的有效证件。
-####结构和形式
-1.号码的结构
 
-公民身份号码是特征组合码，由十七位数字本体码和一位校验码组成。排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。
+![](http://upload-images.jianshu.io/upload_images/3873966-5236b2de272ce686.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-2．地址码
+#### A simple Id card validation rules written in pure swift, lightweight but powerful.
 
-　  表示编码对象常住户口所在县（市、旗、区）的行政区划代码，按GB/T2260的规定执行。
+###### [🇨🇳中文介绍](http://www.jianshu.com/p/33ed0d7cb413)
+>Recent projects used to judge the legality of the id card original thinking of regular online a lot of, just copy and paste the one, who wanted to meet a id number with X-ray test, the test says change X to Numbers, is not the correct id number, you write wrong, id long ago heard that regular can only judge the format is correct, and calculated to id for the correctness of algorithm.
+## Requirements
+
+- iOS 8.0+ 
+- Xcode 8
+- Swift 3.0
+## GitHub
+### [OCDemo](https://github.com/KingComeFromChina/CheckUserIDNumberValidDemoOC)
+### [SwiftDemo](https://github.com/KingComeFromChina/CheckUserIDNumberValidDemoSwift)
+Look at the following id common sense, then look at the code, your logic is clear.
+#### Identification of common sense
+Our country's id number is divided into 15 and 18.Id is a national identity number, the number is not random.
+Resident identity card number, according to the showing of the People's Republic of China national standard GB 11643-11643] in the regulations on citizen id Numbers, citizenship combined code number is characteristics, by 17 digit code of ontology and a number of check code.The order from left to right in turn for: six figures address code, eight digit birth date code, the three digital sequence code and a digital check code.Resident identity card is the national legal proof of valid certificates of the identity of the individual citizens.
+
+#### Structure and form
+
+1. The structure of the number
+
+>Citizen identity number is characteristics of combination code, the seventeen of digital ontology yards and a check code.The order from left to right in turn for: six figures address code, eight digit birth date code, the three digital sequence code and a digital check code.
+
+2．Address code
+
+>Encoding the object the permanent residence county (city, flag, area) of administrative division code, shall be governed by the provisions of the GB/T2260.
+　
+  
+3．Birth date code
 　  
-　  3．出生日期码
 　  
-　  表示编码对象出生的年、月、日，按GB/T7408的规定执行，年、月、日代码之间不用分隔符。
+>said coding object birth year, month, day, according to the provisions of the GB/T7408, year, month, day without separators between code.
+
 　  
-　  4．顺序码
+4．The order code
 　  
-　  表示在同一地址码所标识的区域范围内，对同年、同月、同日出生的人编定的顺序号，顺序码的奇数分配给男性，偶数分配给女性。
+> said at the same address code identified areas within the scope of the people born in the same year, in the same month, on the same day of serial number, sequence code odd number assigned to the male, the even assigned to women.　  
+
+5．Check code
 　  
-　  5．校验码
-　  
-　  　 根据前面十七位数字码，按照ISO7064:1983.MOD11-2校验码计算出来的检验码。
+> according to the previous 17 digit word, according to ISO7064:1983 MOD11-2 check code calculated check code.
+
+6. Address code
+
+
+  ```
+  In north China： The Beijing municipal|110000，tianjin|120000，In hebei province|130000，Shanxi Province|140000，The Inner Mongolia autonomous region|150000，
+
+  In the northeast： Liaoning province|210000，Jilin province|220000，Heilongjiang province|230000，
+
+  East China area： Shanghai|310000，Jiangsu province|320000，Zhejiang province|330000，In anhui province|340000，Fujian province|350000，Jiangxi province|360000，In shandong province|370000，
+
+  In central China： Henan province|410000，Hubei province|420000，Hunan province|430000
+
+  In south China： Guangdong province|440000，The guangxi zhuang autonomous region|450000，Hainan province|460000，
+
+  In the southwest： chongqing|500000，Sichuan province|510000，The guizhou province|520000，In yunnan province|530000，The Tibet autonomous region|540000，
+
+  The northwest region： Shanxi province|610000，Gansu province|620000，Qinghai province|630000，The ningxia hui autonomous region|640000，The xinjiang uygur autonomous region|650000，
+ 
+  Special area：The Taiwan region(886)|710000，The Hong Kong special administrative region（852)|810000，The Macao special administrative region（853)|820000
+   ```
+#### The Chinese mainland residents, digital coding rules for id number in the address：
+　
+ ```
+ 
+Said the first, two provinces (autonomous regions and municipalities directly under the central government, special administrative region).　 
+
+The third and fourth said city (prefecture, autonomous prefectures and African union (au) and the national municipality directly under the central government's municipal districts and counties of summary code).Among them, 01-20: pp.49-60 70 provinces municipalities directly under the central government;21 to 50 said region (autonomous prefectures and au).
+
+Fifth, said the county (municipal, county-level city, flag).01-18 municipal district or region (autonomous prefectures and au) governs county;21-80 counties (banners);81-99 indicates directly under province county.
+
+ ```
+
+
+7. Birthday period code
+> id number 7 to 14 encoding the object birth year, month, day, one year with four digits, said no separators between year, month, day.For example, May 11, 1981 in 19810511.　  　 
 　  　 
-　  　 #####地址码
-　  　 华北地区： 北京市|110000，天津市|120000，河北省|130000，山西省|140000，内蒙古自治区|150000，
+
+8. The order code
+> id number to fifteenth to address identified areas within the scope of seventeen, born of the same year, month, the staff of serial number.17 odd among men, even among women　  　 
 　  　 
-　  　 东北地区： 辽宁省|210000，吉林省|220000，黑龙江省|230000，
-　  　 
-　  　 华东地区： 上海市|310000，江苏省|320000，浙江省|330000，安徽省|340000，福建省|350000，江西省|360000，山东省|370000，
-　  　 
-　  　 华中地区： 河南省|410000，湖北省|420000，湖南省|430000，
-　  　 
-　  　 华南地区： 广东省|440000，广西壮族自治区|450000，海南省|460000，
-　  　 
-　  　 西南地区： 重庆市|500000，四川省|510000，贵州省|520000，云南省|530000，西藏自治区|540000，
-　  　 
-　  　 西北地区： 陕西省|610000，甘肃省|620000，青海省|630000，宁夏回族自治区|640000，新疆维吾尔自治区|650000，
-　  　 
-　  　 特别地区：台湾地区(886)|710000，香港特别行政区（852)|810000，澳门特别行政区（853)|820000
-　  　 
-　  　 #####中国大陆居民身份证号码中的地址码的数字编码规则为：
-　  　 第一、二位表示省（自治区、直辖市、特别行政区）。
-　  　 
-　  　 第三、四位表示市（地级市、自治州、盟及国家直辖市所属市辖区和县的汇总码）。其中，01-20，51-70表示省直辖市；21-50表示地区（自治州、盟）。
-　  　 
-　  　 第五、六位表示县（市辖区、县级市、旗）。01-18表示市辖区或地区（自治州、盟）辖县级市；21-80表示县（旗）；81-99表示省直辖县级市。
-　  　 
-　  　 #####生日期码
-　  　 身份证号码第七位到第十四位）表示编码对象出生的年、月、日，其中年份用四位数字表示，年、月、日之间不用分隔符。例如：1981年05月11日就用19810511表示。
-　  　 
-　  　 #####顺序码
-　  　 身份证号码第十五位到十七位）地址码所标识的区域范围内，对同年、月、日出生的人员编定的顺序号。其中第十七位奇数分给男性，偶数分给女性
-　  　 
-　  　 #####校验码
-　  　 作为尾号的校验码，是由号码编制单位按统一的公式计算出来的，如果某人的尾号是0-9，都不会出现X，但如果尾号是10，那么就得用X来代替，因为如果用10做尾号，那么此人的身份证就变成了19位，而19位的号码违反了国家标准，并且中国的计算机应用系统也不承认19位的身份证号码。Ⅹ是罗马数字的10，用X来代替10，可以保证公民的身份证符合国家标准。
-　  　 
-　  　 ###身份证校验码的计算方法
-　  　 1、将前面的身份证号码17位数分别乘以不同的系数。从第一位到第十七位的系数分别为：7－9－10－5－8－4－2－1－6－3－7－9－10－5－8－4－2。
-　  　 2、将这17位数字和系数相乘的结果相加。
-　  　 3、用加出来和除以11，看余数是多少？
-　  　 4、余数只可能有0－1－2－3－4－5－6－7－8－9－10这11个数字。其分别对应的最后一位身份证的号码为1－0－X－9－8－7－6－5－4－3－2。(即余数0对应1，余数1对应0，余数2对应X...)
-　  　 5、通过上面得知如果余数是3，就会在身份证的第18位数字上出现的是9。如果对应的数字是2，身份证的最后一位号码就是罗马数字x。
-　  　 
-　  　 ##下面直接粘贴代码
-　  　 ##OC版本的
-　  　 ```
-　  　 -(BOOL)validateIDCardNumber:(NSString *)value {
+
+9. Check code
+　
+> as a private check code, it is calculated by number unit according to the unified formula, if someone's tail number is 0-9, X will not appear, but if the tail is 10, then to use X to replace, because if made tail number 10, then this person id card becomes a 19, and violated the national standard, the number 19 and China's computer application system does not recognize identification number 19.Ⅹ is Roman numeral 10, with 10 X instead of, can guarantee citizen id card is in line with national standards.　  　 
+
+
+10. The calculation method of id check code
+
+```
+1、 will be in front of the id card number 17 digit number multiplied by the coefficient of different respectively.From the first to 17 coefficient respectively: 7-9-10-5-8-4-5-8-4-3-7-9-7-9-10-4-2.
+
+2、 the coefficient of 17 Numbers and the result of the multiplication addition.
+
+3、 in and out, and divided by 11, the remainder is how much?
+
+4、 the remainder may have only 0-1-2-3-1-2-3 - the 7-8-9-10 this 11 Numbers.Its respectively corresponding to the last id number is 1-0 - X - 9-8-7-9-8-7-3-2.(that is, the remainder 0 corresponds to 1, the remainder corresponding to 0, 1 remainder 2 corresponding X...)
+
+5、Through that if the remainder is above 3, in the id card on the 18th of digital is 9.If the corresponding number is 2, the last of the id card number is the Roman numerals x.
+
+```
+
+## Directly paste the code below
+## OC version 
+　  　
+　 
+```
+ -(BOOL)validateIDCardNumber:(NSString *)value {
 　  　 
 　  　 value = [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 　  　 NSInteger length =0;
@@ -184,11 +220,15 @@
 　  　 return NO;
 　  　 }
 　  　 }
+```
 　  　 
-　  　 ```
-　  　 ##Swift版本的
-　  　 ```
-　  　 func isTrueIDNumber(text:String) -> Bool{
+## Swift version 
+
+　  　
+　  　 
+　  　
+```
+func isTrueIDNumber(text:String) -> Bool{
 　  　 
 　  　 var value = text
 　  　 
@@ -363,9 +403,19 @@
 　  　 
 　  　 return intValue
 　  　 }
-　  　 
-　  　 ```
-　  　 
-　  　 #总结
-　  　 如果你感觉有用的话，拿走，点个喜欢就OK
+```
+
+# Recommend the article
+## [iPhone X 适配（Swift篇）](http://www.jianshu.com/p/c01da05c5e40)
+## [iOS身份证判断正则加算法](http://www.jianshu.com/p/33ed0d7cb413)
+## [RN环境搭建及与原生交互](http://www.jianshu.com/p/1537bb431d12)
+## [RxSwift使用手册](http://www.jianshu.com/p/d06b87e368fd)
+## [RxSwift日常项目使用（持续更新。。。）](http://www.jianshu.com/p/63a03788f4cf)
+## [比较RAC和RxSwift](http://www.jianshu.com/p/c38f027f55e9)
+# The author
+## [伪文艺的程序员](http://www.jianshu.com/u/6ae311ad394d)
+
+# Conclusion
+
+>If you feel useful, and some like is OK
 
